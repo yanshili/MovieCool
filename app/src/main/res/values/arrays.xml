@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="search_criteria">
+        <item>电影</item>
+        <item>演员</item>
+        <item>导演</item>
+    </string-array>
+
+</resources>

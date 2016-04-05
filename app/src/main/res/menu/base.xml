@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <!--<item-->
+        <!--android:id="@+id/action_account"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:title="@string/action_account"-->
+        <!--android:icon="@drawable/ic_account_identity_24dp"-->
+        <!--app:showAsAction="always"/>-->
+
+    <!--<item-->
+        <!--android:id="@+id/search"-->
+        <!--android:title="搜影片"-->
+        <!--android:icon="@android:drawable/ic_menu_search"-->
+        <!--android:orderInCategory="100"-->
+        <!--app:showAsAction="collapseActionView|ifRoom"-->
+        <!--/>-->
+
+    <!--<item-->
+        <!--android:id="@+id/action_settings"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:title="@string/action_settings"-->
+        <!--app:showAsAction="never"/>-->
+
+</menu>

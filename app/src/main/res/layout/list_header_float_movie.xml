@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ViewAnimator
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/headerFloatAnimator"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:colorBackground">
+
+    <TextView
+        android:id="@+id/selectCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:visibility="visible"
+        android:textSize="16sp"
+        android:background="?android:colorBackground"
+        android:paddingBottom="@dimen/size_mm"
+        android:paddingTop="@dimen/size_mm"
+        />
+
+</ViewAnimator>
+
+

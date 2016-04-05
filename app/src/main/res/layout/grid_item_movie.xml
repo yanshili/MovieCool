@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="160dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/size_mm"
+        android:clickable="true"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="4dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/ivPoster0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvMovieTitle0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/size_mm"
+        android:clickable="true"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="4dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/ivPoster1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvMovieTitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/size_mm"
+        android:clickable="true"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="4dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/ivPoster2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </FrameLayout>
+        <TextView
+            android:id="@+id/tvMovieTitle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            />
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

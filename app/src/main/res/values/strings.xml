@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">影酷</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_account">账号</string>
+    <string name="title_activity_movie_list">MovieListActivity</string>
+    <string name="crawl_activity_movie_list">CrawlActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tv_video_info">影视</string>
+    <string name="tv_navigation">导航</string>
+    <string name="tv_my_account">我的</string>
+
+
+    <string-array name="main_video_tab">
+        <item>全部</item>
+        <item>精选</item>
+        <item>好莱坞</item>
+        <item>最近更新</item>
+        <item>预告片</item>
+        <item>喜剧片</item>
+        <item>动作片</item>
+        <item>爱情片</item>
+        <item>科幻片</item>
+        <item>经典老片</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_search">搜索</string>
+    <string name="title_activity_login">登陆</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_user_name">用户名（必填，2~20位数字、英文字母或汉字）</string>
+    <string name="prompt_email">邮箱（必填）</string>
+    <string name="prompt_password">密码（必填，6~9位数字或英文字母）</string>
+    <string name="prompt_password_confirm">请再次输入确认密码（必填）</string>
+    <string name="action_login">登陆</string>
+    <string name="action_sign_in">注册</string>
+    <string name="action_sign_in_short">登陆</string>
+    <string name="error_invalid_email">邮箱无效，请确认邮箱格式</string>
+    <string name="error_invalid_password">密码无效，请确认密码格式</string>
+    <string name="error_confirm_password">两次密码不一致，请重新输入确认</string>
+    <string name="error_incorrect_password">密码不正确</string>
+    <string name="error_field_required">邮箱为空</string>
+    <string name="forget_password">忘记密码？</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_favorite">收藏</string>
+    <string name="search_prompt_input">请输入搜索内容</string>
+    <string name="search_prompt_nothing">暂时没有您要搜索的内容\n建议您输入关键字搜索</string>
+
+</resources>
