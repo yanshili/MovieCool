@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.activity.DetailActivity;
 import com.coolcool.moviecool.R;
 import com.coolcool.moviecool.custom.ItemGridSingle;
@@ -23,9 +23,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by yanshili on 2016/3/30.
- */
 public class SingleImageHolder extends RecyclerBaseViewHolder implements View.OnClickListener{
     public static final String TAG="SingleImageHolder";
     public static final String SUB_GRID_VIEW_DATA ="SUB_GRID_VIEW_DATA";

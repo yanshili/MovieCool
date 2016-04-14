@@ -53,5 +53,25 @@
     <string name="title_activity_favorite">收藏</string>
     <string name="search_prompt_input">请输入搜索内容</string>
     <string name="search_prompt_nothing">暂时没有您要搜索的内容\n建议您输入关键字搜索</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about_info">
+        \n声明:
+        \n\n影酷为个人作品，因个人精力有限并不保证所有数据均正确；如有信息不全或者是有误欢迎给我来信，我会尽快处理。
+        \n影酷提供的最新影视资源的下载地址均源于互联网抓取，只供网友学习交流。
+        \n影酷只提供影片信息检索服务，并不提供影片资源存储，也不参与录制、上传；
+        如果收录的影片无意侵犯了贵司版权，请给下方的邮箱来信，我们会及时处理和回复，谢谢！
+        \n\n邮箱：coolcoolandroid@sina.com
+    </string>
+    <string name="about_info_statement_header">声明：</string>
+    <string name="about_info_body">
+        \n\n影酷为个人作品，因个人精力有限并不保证所有数据均正确；如有信息不全或者是有误欢迎给我来信，我会尽快处理。
+        \n影酷提供的最新影视资源的下载地址均源于互联网抓取，只供网友学习交流。
+        影酷只提供影片信息检索服务，并不提供影片资源存储，也不参与录制、上传；
+        如果收录的影片无意侵犯了贵司版权，请给下方的邮箱来信，我会及时处理和回复，谢谢！
+        \n\n邮箱：
+    </string>
+    <string name="about_info_mail">
+        coolcoolandroid@sina.com
+    </string>
 
 </resources>

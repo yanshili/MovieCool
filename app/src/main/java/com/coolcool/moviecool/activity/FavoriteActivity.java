@@ -3,7 +3,6 @@ package com.coolcool.moviecool.activity;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,12 +11,13 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.coolcool.moviecool.R;
+import com.coolcool.moviecool.activity.base.BaseActivity;
 import com.coolcool.moviecool.adapter.SubRecyclerAdapter;
-import com.coolcool.moviecool.utils.Constant;
-import com.coolcool.moviecool.utils.TintDrawableUtil;
 import com.coolcool.moviecool.holder.LinearGridViewHolder;
 import com.coolcool.moviecool.model.ItemFeed;
 import com.coolcool.moviecool.model.MovieInfo;
+import com.coolcool.moviecool.common.Constant;
+import com.coolcool.moviecool.utils.TintDrawableUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.listener.FindListener;
 
-public class FavoriteActivity extends AppCompatActivity implements View.OnClickListener {
+public class FavoriteActivity extends BaseActivity implements View.OnClickListener {
     public static final String TAG="FavoriteActivity";
 
     private RecyclerView mRecyclerView;

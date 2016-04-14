@@ -7,21 +7,17 @@ android {
     defaultConfig {
         applicationId "com.coolcool.moviecool"
         minSdkVersion 16
-        targetSdkVersion 21
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         //不让gradle自动生成不同屏幕分辨率的png图
-        generatedDensities = []
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    // This is handled for you by the 2.0+ Gradle Plugin
-    aaptOptions {
-        additionalParameters "--no-version-vectors"
     }
 }
 
@@ -34,10 +30,10 @@ dependencies {
     compile files('libs/BmobSDK_V3.4.5_1111.jar')
     compile files('libs/okhttp-2.4.0.jar')
     compile files('libs/okio-1.4.0.jar')
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:design:23.2.1'
-    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'com.android.support:support-v4:23.3.0'
     compile 'in.srain.cube:grid-view-with-header-footer:1.0.12'
-    compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.android.support:cardview-v7:23.3.0'
     compile 'com.facebook.fresco:fresco:0.9.0+'
 }

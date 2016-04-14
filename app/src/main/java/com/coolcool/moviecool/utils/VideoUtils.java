@@ -3,6 +3,7 @@ package com.coolcool.moviecool.utils;
 import android.content.Context;
 import android.util.Log;
 
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.model.DisplayType;
 
 import java.util.ArrayList;
@@ -11,9 +12,6 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
-/**
- * Created by yanshili on 2016/3/30.
- */
 public class VideoUtils {
     public static final String TAG="VideoUtils";
 

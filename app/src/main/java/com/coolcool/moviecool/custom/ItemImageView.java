@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.R;
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;

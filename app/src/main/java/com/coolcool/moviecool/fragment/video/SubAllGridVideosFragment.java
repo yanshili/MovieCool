@@ -16,10 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewAnimator;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.R;
 import com.coolcool.moviecool.adapter.BmobGridAdapter;
-import com.coolcool.moviecool.api.DataCacheBase;
+import com.coolcool.moviecool.utils.DataCacheBase;
 import com.coolcool.moviecool.custom.HeaderView;
 import com.coolcool.moviecool.custom.ItemGridLayout;
 
@@ -248,11 +248,7 @@ public class SubAllGridVideosFragment extends Fragment implements View.OnClickLi
             }
             int lastVisibleItem=firstVisibleItem+visibleItemCount-1;
             //判断当前可见项是否为最后一项
-            if (lastVisibleItem==totalItemCount-1){
-                lastFlag =true;
-            }else {
-                lastFlag =false;
-            }
+            lastFlag=lastVisibleItem==totalItemCount-1;
             //已经到最后一项数据，没有数据了
             if ((lastVisibleItem+1)* ItemGridLayout.columnCount>=adapter.getItemCount()) {
                 lastFlag =false;

@@ -6,18 +6,21 @@ import android.graphics.Paint;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.util.TypedValue;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.coolcool.moviecool.utils.Constant;
 import com.coolcool.moviecool.R;
+import com.coolcool.moviecool.common.Constant;
 
 /**
  * 全部影视页面>>头部>>可滚动的>>>fragment指示器页面标签视图
  * Created by yanshili on 2016/3/14.
  */
 public class TopTabView extends LinearLayout{
+    public static final String TAG="TopTabView";
     //颜色值红色
     public int COLOR_ACCENT;
     //颜色值蓝色
@@ -86,7 +89,8 @@ public class TopTabView extends LinearLayout{
                     , (int) (8 * Constant.dp)
                     , (int) (16 * Constant.dp)
                     , (int) (8 * Constant.dp));
-            textView.setTextSize(4* Constant.dp);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,16 * Constant.dp);
+            Log.i(TAG,"字体大小"+textView.getTextSize());
             addView(textView);
         }
     }

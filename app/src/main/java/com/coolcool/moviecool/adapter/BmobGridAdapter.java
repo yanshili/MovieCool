@@ -13,10 +13,10 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.activity.DetailActivity;
 import com.coolcool.moviecool.R;
-import com.coolcool.moviecool.api.DataCacheBase;
+import com.coolcool.moviecool.utils.DataCacheBase;
 import com.coolcool.moviecool.custom.ItemGridLayout;
 import com.coolcool.moviecool.holder.ViewHolder;
 import com.coolcool.moviecool.model.MovieInfo;
@@ -37,7 +37,7 @@ public class BmobGridAdapter extends BaseAdapter implements View.OnClickListener
     public static final String TAG="BmobGridAdapter";
 
     //与查询条件集合
-    List<BmobQuery<MovieInfo>> andQueries=new ArrayList<BmobQuery<MovieInfo>>();
+    List<BmobQuery<MovieInfo>> andQueries=new ArrayList<>();
     List<ArrayList<BmobQuery<MovieInfo>>> listArray=new ArrayList<>();
     //每页加载的个数
     public static final int A_PAGE_COUNT=15;
@@ -150,18 +150,20 @@ public class BmobGridAdapter extends BaseAdapter implements View.OnClickListener
     int fetchPageTimes =0;
     /**
      * 下载第page页的内容
-     * @param page
+     * @param page      加载的页码
      */
     public void fetchNextPage(int page){
         final int p=page;
         if (mList.size()==itemCount) return;
         //主查询条件
-        BmobQuery<MovieInfo> mainQuery=new BmobQuery<MovieInfo>();
+        BmobQuery<MovieInfo> mainQuery=new BmobQuery<>();
         //主查询条件同“与”查询条件集合相与即：and
         //同“或”查询条件集合相或即：or
         mainQuery.and(andQueries);
         //限制每次加载的个数最多为A_PAGE_COUNT个
         mainQuery.setLimit(A_PAGE_COUNT);
+        mainQuery.order("-updateDate");
+        mainQuery.addWhereContains("htmlUrl","http");
         //page页数，每页个数A_PAGE_COUNT
         mainQuery.setSkip((page - 1) * A_PAGE_COUNT);
         //获取总页数，存放在volatile修饰的pageCount里
@@ -243,7 +245,7 @@ public class BmobGridAdapter extends BaseAdapter implements View.OnClickListener
     public void fetchMovies(int page){
         final int p=page;
         //主查询条件
-        BmobQuery<MovieInfo> mainQuery=new BmobQuery<MovieInfo>();
+        BmobQuery<MovieInfo> mainQuery=new BmobQuery<>();
         //主查询条件同“与”查询条件集合相与即：and
         //同“或”查询条件集合相或即：or
         mainQuery.and(andQueries);
@@ -251,6 +253,8 @@ public class BmobGridAdapter extends BaseAdapter implements View.OnClickListener
         mainQuery.setLimit(A_PAGE_COUNT);
         //page页数，每页个数A_PAGE_COUNT
         mainQuery.setSkip((page - 1) * A_PAGE_COUNT);
+        mainQuery.order("-updateDate");
+        mainQuery.addWhereContains("htmlUrl","http");
         //获取总页数，存放在volatile修饰的pageCount里
         getPageSum(mainQuery);
 
@@ -291,9 +295,9 @@ public class BmobGridAdapter extends BaseAdapter implements View.OnClickListener
 
     public void initCriteria(){
         for (int i=0;i< Constant.DBColumnName.length;i++){
-            ArrayList<BmobQuery<MovieInfo>> query=new ArrayList<BmobQuery<MovieInfo>>();
+            ArrayList<BmobQuery<MovieInfo>> query=new ArrayList<>();
             //查询条件
-            BmobQuery<MovieInfo> columnQuery=new BmobQuery<MovieInfo>();
+            BmobQuery<MovieInfo> columnQuery=new BmobQuery<>();
             //对应数据库columnNumber列的列名
             String columnName= Constant.DBColumnName[i];
             //对应数据库，我们要查找的rowNumber行的内容
@@ -311,9 +315,9 @@ public class BmobGridAdapter extends BaseAdapter implements View.OnClickListener
     }
 
     public List<BmobQuery<MovieInfo>> addCriteria(int columnNumber,int rowNumber){
-        ArrayList<BmobQuery<MovieInfo>> query=new ArrayList<BmobQuery<MovieInfo>>();
+        ArrayList<BmobQuery<MovieInfo>> query=new ArrayList<>();
         //查询条件
-        BmobQuery<MovieInfo> columnQuery=new BmobQuery<MovieInfo>();
+        BmobQuery<MovieInfo> columnQuery=new BmobQuery<>();
         //对应数据库columnNumber列的列名
         String columnName= Constant.DBColumnName[columnNumber];
         //对应数据库，我们要查找的rowNumber行的内容
@@ -326,7 +330,7 @@ public class BmobGridAdapter extends BaseAdapter implements View.OnClickListener
                 year=Integer.parseInt(rowContent);
                 columnQuery.addWhereEqualTo(columnName, year);
             }catch (NumberFormatException nfe){
-                BmobQuery<MovieInfo> columnQuery1=new BmobQuery<MovieInfo>();
+                BmobQuery<MovieInfo> columnQuery1=new BmobQuery<>();
                 switch (rowContent){
                     case "00年代":
                         columnQuery.addWhereGreaterThanOrEqualTo(columnName, 2000);
@@ -353,7 +357,7 @@ public class BmobGridAdapter extends BaseAdapter implements View.OnClickListener
         }
 
         if (rowNumber == 0) {
-            columnQuery=new BmobQuery<MovieInfo>();
+            columnQuery=new BmobQuery<>();
             columnQuery.addWhereNotEqualTo(columnName, Constant.criteria[columnNumber][0]);
         }
         query.add(columnQuery);

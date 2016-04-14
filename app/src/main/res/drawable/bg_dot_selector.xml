@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/bg_gradient_black_white"
+        android:drawable="@drawable/bg_dot_enable_true"
         android:state_enabled="true"/>
     <item
-        android:drawable="@drawable/bg_transparent"
+        android:drawable="@drawable/bg_dot_enable_false"
         android:state_enabled="false"/>
 
 </selector>

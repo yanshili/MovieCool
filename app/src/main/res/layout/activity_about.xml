@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_green_light"
     android:fitsSystemWindows="true"
-    tools:context=".activity.DetailActivity">
+    tools:context="com.coolcool.moviecool.activity.AboutActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -38,12 +38,11 @@
                         />
 
                     <TextView
-                        android:id="@+id/tvMovieName"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:layout_marginLeft="20dp"
-                        android:text="暂无详细信息"
+                        android:text="关于本应用"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
                         />
@@ -63,6 +62,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_detail"/>
+    <include layout="@layout/content_about"/>
 
 </android.support.design.widget.CoordinatorLayout>

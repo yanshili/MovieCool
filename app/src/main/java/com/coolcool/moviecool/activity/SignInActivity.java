@@ -3,18 +3,12 @@ package com.coolcool.moviecool.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.LoaderManager;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -28,22 +22,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coolcool.moviecool.R;
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.activity.base.BaseActivity;
+import com.coolcool.moviecool.common.Constant;
+import com.coolcool.moviecool.model.OrdinaryUser;
 import com.coolcool.moviecool.utils.PasswordUtils;
 import com.coolcool.moviecool.utils.RegexUtils;
-import com.coolcool.moviecool.model.OrdinaryUser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.EmailVerifyListener;
 import cn.bmob.v3.listener.SaveListener;
 
-/**
- * Created by yanshili on 2016/4/2.
- */
-public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignInActivity extends BaseActivity implements View.OnClickListener {
     public static final String TAG="LoginActivity";
 
     /**
@@ -89,7 +80,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private void initView(){
         // Set up the login form.
         mUserNameView= (AutoCompleteTextView) findViewById(R.id.userName);
-        populateAutoComplete();
+//        populateAutoComplete();
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -114,46 +105,46 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         mProgressView = findViewById(R.id.sign_in_progress);
     }
 
-    private void populateAutoComplete() {
-        getLoaderManager().initLoader(0, null, mLoaderCallbacks);
-    }
+//    private void populateAutoComplete() {
+//        getLoaderManager().initLoader(0, null, mLoaderCallbacks);
+//    }
 
-    LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks
-            =new LoaderManager.LoaderCallbacks<Cursor>() {
-
-        @Override
-        public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
-            return new CursorLoader(SignInActivity.this
-                    // Retrieve data rows for the device user's 'profile' contact.
-                    , Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI
-                    , ContactsContract.Contacts.Data.CONTENT_DIRECTORY)
-                    , ProfileQuery.PROJECTION
-                    // Select only email addresses.
-                    ,ContactsContract.Contacts.Data.MIMETYPE + " = ?"
-                    , new String[]{ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE}
-
-                    // Show primary email addresses first. Note that there won't be
-                    // a primary email address if the user hasn't specified one.
-                    ,ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-        }
-
-        @Override
-        public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-            List<String> emails = new ArrayList<>();
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                emails.add(cursor.getString(ProfileQuery.ADDRESS));
-                cursor.moveToNext();
-            }
-
-            addEmailsToAutoComplete(emails);
-        }
-
-        @Override
-        public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-        }
-    };
+//    LoaderManager.LoaderCallbacks<Cursor> mLoaderCallbacks
+//            =new LoaderManager.LoaderCallbacks<Cursor>() {
+//
+//        @Override
+//        public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
+//            return new CursorLoader(SignInActivity.this
+//                    // Retrieve data rows for the device user's 'profile' contact.
+//                    , Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI
+//                    , ContactsContract.Contacts.Data.CONTENT_DIRECTORY)
+//                    , ProfileQuery.PROJECTION
+//                    // Select only email addresses.
+//                    ,ContactsContract.Contacts.Data.MIMETYPE + " = ?"
+//                    , new String[]{ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE}
+//
+//                    // Show primary email addresses first. Note that there won't be
+//                    // a primary email address if the user hasn't specified one.
+//                    ,ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
+//        }
+//
+//        @Override
+//        public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+//            List<String> emails = new ArrayList<>();
+//            cursor.moveToFirst();
+//            while (!cursor.isAfterLast()) {
+//                emails.add(cursor.getString(ProfileQuery.ADDRESS));
+//                cursor.moveToNext();
+//            }
+//
+//            addEmailsToAutoComplete(emails);
+//        }
+//
+//        @Override
+//        public void onLoaderReset(Loader<Cursor> cursorLoader) {
+//
+//        }
+//    };
 
     //确认输入是否符合要求
     private boolean checkInput(String userName,String email,String password,String passwordConfirm){
@@ -234,7 +225,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                     , "注册成功", Toast.LENGTH_SHORT).show();
                         }
                     });
-                    Intent intent = new Intent(SignInActivity.this, BaseActivity.class);
+                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -244,7 +235,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     showProgress(false);
                     Log.i(TAG, "注册失败:i==" + i + "  原因" + s);
 
-                    String errorText = null;
+                    String errorText;
                     switch (i) {
                         case 202:
                             errorText = "注册失败：\n该用户名已被注册，请重新输入";

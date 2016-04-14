@@ -18,7 +18,7 @@ import com.coolcool.moviecool.activity.DetailActivity;
 import com.coolcool.moviecool.adapter.CarouselPagerAdapter;
 import com.coolcool.moviecool.model.ItemFeed;
 import com.coolcool.moviecool.model.MovieInfo;
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
@@ -100,7 +100,7 @@ public class CarouselViewHolder extends RecyclerBaseViewHolder implements View.O
                     MovieInfo movie=mMovieInfoList.get(i);
                     if (movie!=null){
                         View dot=new View(mContext);
-                        dot.setBackgroundResource(R.drawable.backgroun_dot_selector);
+                        dot.setBackgroundResource(R.drawable.bg_dot_selector);
                         LinearLayout.LayoutParams params=new LinearLayout
                                 .LayoutParams((int) (4* Constant.dp)
                                 , (int) (4* Constant.dp));
@@ -108,7 +108,7 @@ public class CarouselViewHolder extends RecyclerBaseViewHolder implements View.O
                         params.topMargin = (int) (8* Constant.dp);
                         dot.setEnabled(false);
                         dot.setLayoutParams(params);
-                        int id=Integer.parseInt(movie.getPostId()+"");
+                        int id=2*i*i+1;
                         dot.setId(id*2);
                         dotViews.add(dot);
 
@@ -125,7 +125,7 @@ public class CarouselViewHolder extends RecyclerBaseViewHolder implements View.O
                     imageView.setTag(movie.getPosterUrl());
                     imageView.setImageResource(R.mipmap.ic_launcher);
                     imageView.setOnClickListener(this);
-                    int id=Integer.parseInt(movie.getPostId()+"");
+                    int id=i*2+1;
                     imageView.setId(id * 2 + 1);
 
                     GenericDraweeHierarchyBuilder builder
@@ -134,7 +134,11 @@ public class CarouselViewHolder extends RecyclerBaseViewHolder implements View.O
                             .setActualImageScaleType(ScalingUtils.ScaleType.FIT_XY)
                             .build();
                     imageView.setHierarchy(hierarchy);
-                    imageView.setImageURI(Uri.parse(movie.getPosterUrl()));
+                    String url=movie.getPosterUrl();
+                    Uri uri=null;
+                    if (url!=null)
+                        uri=Uri.parse(url);
+                    imageView.setImageURI(uri);
 
                     mImageViewList.add(imageView);
                 }
@@ -199,7 +203,8 @@ public class CarouselViewHolder extends RecyclerBaseViewHolder implements View.O
         String posterUrl= (String) v.getTag();
         if (posterUrl!=null) {
             for (MovieInfo movie:mMovieInfoList){
-                if (movie.getPosterUrl().equals(posterUrl)){
+                String url=movie.getPosterUrl();
+                if (url!=null&&url.equals(posterUrl)){
                     Intent intent=new Intent(mContext, DetailActivity.class);
                     intent.putExtra(DetailActivity.INTENT_DETAIL,movie);
                     mContext.startActivity(intent);

@@ -2,7 +2,9 @@ package com.coolcool.moviecool.fragment;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -17,10 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.coolcool.moviecool.R;
-import com.coolcool.moviecool.activity.BaseActivity;
+import com.coolcool.moviecool.activity.AboutActivity;
+import com.coolcool.moviecool.activity.MainActivity;
 import com.coolcool.moviecool.activity.FavoriteActivity;
 import com.coolcool.moviecool.activity.LoginActivity;
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.utils.PasswordUtils;
 import com.coolcool.moviecool.utils.TintDrawableUtil;
 import com.coolcool.moviecool.fragment.common.StateFragment;
@@ -38,6 +41,7 @@ public class MainAccountFragment extends StateFragment implements View.OnClickLi
     private TextView tvAccount;
     private CardView accountCard;
     private CardView favoriteCard;
+    private CardView aboutCard;
 
     public MainAccountFragment() {
         // Required empty public constructor
@@ -67,9 +71,11 @@ public class MainAccountFragment extends StateFragment implements View.OnClickLi
         tvAccountPrompt = (TextView) view.findViewById(R.id.tvAccountPromptFragment);
         accountCard= (CardView) view.findViewById(R.id.accountCard);
         favoriteCard= (CardView) view.findViewById(R.id.favoriteCard);
+        aboutCard= (CardView) view.findViewById(R.id.aboutCard);
 
         accountCard.setOnClickListener(this);
         favoriteCard.setOnClickListener(this);
+        aboutCard.setOnClickListener(this);
     }
 
     @Override
@@ -77,17 +83,44 @@ public class MainAccountFragment extends StateFragment implements View.OnClickLi
         switch (v.getId()){
             case R.id.accountCard:
                 if (Constant.ONLINE_STATE){
-                    offLine();
+                    //当用户点击注销时，提醒用户是否确定注销账号
+                    showAlert();
                 }else {
-                    Intent intent=new Intent(mContext, LoginActivity.class);
-                    startActivity(intent);
+                    //用户点击登陆按钮时进入登陆页面
+                    Intent intentLogin=new Intent(mContext, LoginActivity.class);
+                    startActivity(intentLogin);
                 }
                 break;
             case R.id.favoriteCard:
-                Intent intent=new Intent(mContext, FavoriteActivity.class);
-                startActivity(intent);
+                //当用户点击收藏按钮时进入收藏页面
+                Intent intentFavorite=new Intent(mContext, FavoriteActivity.class);
+                startActivity(intentFavorite);
+                break;
+            case R.id.aboutCard:
+                //当用户点击收藏按钮时进入收藏页面
+                Intent intentAbout=new Intent(mContext, AboutActivity.class);
+                startActivity(intentAbout);
                 break;
         }
+    }
+
+    //当用户点击注销时，提醒用户是否确定注销账号
+    private void showAlert(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
+        builder.setTitle("点击确定注销账号")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case AlertDialog.BUTTON_POSITIVE:
+                                offLine();
+                                break;
+                            case AlertDialog.BUTTON_NEGATIVE:
+                                break;
+                        }
+                    }
+                })
+                .show();
     }
 
     //下线
@@ -111,7 +144,7 @@ public class MainAccountFragment extends StateFragment implements View.OnClickLi
     //更新账户头像的颜色
     private void updateAccountState(boolean online){
 
-        BaseActivity activity= (BaseActivity) mContext;
+        MainActivity activity= (MainActivity) mContext;
         activity.updateAccountState(online);
         int color=online?R.color.colorAccent:R.color.grayWhite;
         Drawable drawable= TintDrawableUtil

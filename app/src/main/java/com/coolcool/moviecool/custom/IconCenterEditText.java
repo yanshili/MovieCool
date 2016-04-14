@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -46,7 +47,9 @@ public class IconCenterEditText extends EditText implements View.OnFocusChangeLi
 
     private boolean hasText=false;
     //清除文本内容的 标志
-    private Drawable mClearDrawable = getResources().getDrawable(R.drawable.ic_clear_black_18dp);
+//    private Drawable mClearDrawable = (VectorDrawableCompat) getResources().getDrawable(R.drawable.ic_clear_24dp);
+    private Drawable mClearDrawable=VectorDrawableCompat
+            .create(getResources(), R.drawable.ic_clear_24dp, null);
    //控件是否有焦点
     private boolean hasFocus;
 
@@ -145,7 +148,8 @@ public class IconCenterEditText extends EditText implements View.OnFocusChangeLi
      */
     private void setClearIconVisible(boolean visible) {
         //获取EditText的DrawableRight,假如没有设置我们就使用默认的图片
-        mClearDrawable = getResources().getDrawable(R.drawable.ic_clear_black_18dp);
+        mClearDrawable =VectorDrawableCompat
+                .create(getResources(), R.drawable.ic_clear_24dp, null);
         mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(), mClearDrawable.getIntrinsicHeight());
 
         Drawable right = visible ? mClearDrawable : null;

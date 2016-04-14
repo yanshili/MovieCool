@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/background_gradient_black_white"
+        android:background="@drawable/bg_gradient_black_white"
         android:gravity="end"
         android:orientation="horizontal"
         android:padding="@dimen/size_s">

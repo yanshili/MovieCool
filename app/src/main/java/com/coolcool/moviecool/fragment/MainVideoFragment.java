@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.R;
 import com.coolcool.moviecool.adapter.VideoPagerAdapter;
 import com.coolcool.moviecool.custom.TopTabView;

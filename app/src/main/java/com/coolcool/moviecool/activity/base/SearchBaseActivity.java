@@ -2,16 +2,12 @@ package com.coolcool.moviecool.activity.base;
 
 import android.content.Context;
 import android.os.IBinder;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-/**
- * Created by yanshili on 2016/4/1.
- */
-public abstract class SearchBaseActivity extends AppCompatActivity {
+public abstract class SearchBaseActivity extends BaseActivity {
 
 
     @Override
@@ -27,10 +23,6 @@ public abstract class SearchBaseActivity extends AppCompatActivity {
 
     /**
      * 根据EditText所在坐标和用户点击的坐标相对比，来判断是否隐藏键盘，因为当用户点击EditText时则不能隐藏
-     *
-     * @param v
-     * @param event
-     * @return
      */
     private boolean isShouldHideKeyboard(View v, MotionEvent event) {
         if (v != null && (v instanceof EditText)) {
@@ -56,7 +48,6 @@ public abstract class SearchBaseActivity extends AppCompatActivity {
     /**
      * 获取InputMethodManager，隐藏软键盘
      *
-     * @param token
      */
     private void hideKeyboard(IBinder token) {
         if (token != null) {

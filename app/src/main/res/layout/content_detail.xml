@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_green_light"
     android:scrollbars="none"
     fresco:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity.DetailActivity"
@@ -53,7 +52,7 @@
                         android:layout_alignBottom="@+id/ivMovie"
                         android:layout_gravity="bottom"
                         android:gravity="bottom"
-                        android:background="@drawable/bg_gradient_white">
+                        android:background="@drawable/bg_gradient_black_white">
 
                         <ImageView
                             android:id="@+id/favoriteImage"

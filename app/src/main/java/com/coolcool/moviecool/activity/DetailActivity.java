@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -25,12 +24,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coolcool.moviecool.R;
-import com.coolcool.moviecool.api.ParseHtml;
-import com.coolcool.moviecool.utils.Constant;
-import com.coolcool.moviecool.utils.TintDrawableUtil;
-import com.coolcool.moviecool.core.TextViewUtils;
+import com.coolcool.moviecool.activity.base.BaseActivity;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.model.MovieInfo;
 import com.coolcool.moviecool.model.OrdinaryUser;
+import com.coolcool.moviecool.utils.TextViewUtils;
+import com.coolcool.moviecool.utils.TintDrawableUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
@@ -43,10 +42,15 @@ import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 
-public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class DetailActivity extends BaseActivity implements View.OnClickListener {
     public static final String TAG="DetailActivity";
     //用于从intent中获取当前页面所展示的电影信息对象的标志
     public static final String INTENT_DETAIL ="com.coolcool.moviecool.activity.DetailActivity";
+
+    public static final String XUNLEI_URL="XUNLEI_URL";
+    public static final String XUNLEI_TEXT="XUNLEI_TEXT";
+    public static final String BAIDU_URL="BAIDU_URL";
+    public static final String BAIDU_TEXT="BAIDU_TEXT";
 
     //电影海报海报的视图
     private SimpleDraweeView imageView;
@@ -123,9 +127,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     //填充视图
     private void fillView(){
-        if (movieInfo==null) {
+        if (movieInfo==null||movieInfo.getPostId()==null) {
             Toast.makeText(this,"暂无详细信息",Toast.LENGTH_SHORT).show();
-            return;
+            super.onBackPressed();
         }
         tvMovieName.setText(movieInfo.getName());
         final String url=movieInfo.getPosterUrl();
@@ -163,8 +167,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 //            }, CallerThreadExecutor.getInstance());
         }
 
-        ArrayList<HashMap<String,String>> listUrls=new ArrayList<>();
+        ArrayList<HashMap<String,String>> listUrls;
         listUrls=movieInfo.getDownloadUrls();
+        if (listUrls!=null)
         for (int i=0;i<listUrls.size();i++){
             TextView textView=new TextView(this);
             TextView passWordView=new TextView(this);
@@ -172,19 +177,19 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             passWordView.setLayoutParams(params);
             HashMap<String,String> map=listUrls.get(i);
             SpannableString sp=null;
-            if (map.get(ParseHtml.XUNLEI_URL)!=null){
-                sp= TextViewUtils.getSPText(this, map.get(ParseHtml.XUNLEI_URL)
-                        , map.get(ParseHtml.XUNLEI_TEXT));
+            if (map.get(XUNLEI_URL)!=null){
+                sp= TextViewUtils.getSPText(this, map.get(XUNLEI_URL)
+                        , map.get(XUNLEI_TEXT));
                 if (sp!=null)
                     textView.setTag(TextViewUtils.URL_INFO_HEADER);
-            }else if (map.get(ParseHtml.BAIDU_URL)!=null){
-                if (map.get(ParseHtml.BAIDU_TEXT)!=null){
-                    sp= TextViewUtils.getSPText(this, map.get(ParseHtml.BAIDU_URL)
-                            , map.get(ParseHtml.BAIDU_URL)
-                            , map.get(ParseHtml.BAIDU_TEXT), true);
+            }else if (map.get(BAIDU_URL)!=null){
+                if (map.get(BAIDU_TEXT)!=null){
+                    sp= TextViewUtils.getSPText(this, map.get(BAIDU_URL)
+                            , map.get(BAIDU_URL)
+                            , map.get(BAIDU_TEXT), true);
                 }else {
-                    sp= TextViewUtils.getSPText(this, map.get(ParseHtml.BAIDU_URL)
-                            , map.get(ParseHtml.BAIDU_URL), null, true);
+                    sp= TextViewUtils.getSPText(this, map.get(BAIDU_URL)
+                            , map.get(BAIDU_URL), null, true);
                 }
             }
             if (sp!=null){
@@ -193,8 +198,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 textView.setFocusable(false);
                 linear.addView(textView);
 
-                if (map.get(ParseHtml.BAIDU_TEXT)!=null){
-                    String pass=map.get(ParseHtml.BAIDU_TEXT);
+                if (map.get(BAIDU_TEXT)!=null){
+                    String pass=map.get(BAIDU_TEXT);
                     SpannableString s=new SpannableString(pass);
                     s.setSpan(new ForegroundColorSpan(Color.parseColor("#FF4081"))
                             ,0
@@ -333,7 +338,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                         , "收藏成功", Toast.LENGTH_SHORT).show();
                 changeFavoriteImage(true);
                 updateMovieInfo(true);
-                if (favoriteList==null) favoriteList=new ArrayList<Long>();
+                if (favoriteList==null) favoriteList=new ArrayList<>();
                 favoriteList.add(movieInfo.getPostId());
                 updateUserFavorites(favoriteList);
                 Log.i(TAG, "成功添加至收藏");

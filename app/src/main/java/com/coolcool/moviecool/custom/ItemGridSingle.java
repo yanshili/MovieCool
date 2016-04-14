@@ -11,16 +11,13 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.R;
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-/**
- * Created by yanshili on 2016/3/30.
- */
 public class ItemGridSingle extends GridLayout {
 
     public static final String TAG="ItemGridSingle";

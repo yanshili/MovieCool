@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.R;
 import com.coolcool.moviecool.adapter.SubRecyclerAdapter;
 import com.coolcool.moviecool.holder.CarouselViewHolder;
@@ -155,9 +155,9 @@ public class SubPerfectFragment extends Fragment {
     private void processData(List<MoviePage> list){
         if (list.size()>0) mFeedList.clear();
 
-        carouselList = new ArrayList<MovieInfo>();
-        fantasticList = new ArrayList<MovieInfo>();
-        hotList = new ArrayList<MovieInfo>();
+        carouselList = new ArrayList<>();
+        fantasticList = new ArrayList<>();
+        hotList = new ArrayList<>();
         specialList=new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {

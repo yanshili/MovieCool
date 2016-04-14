@@ -2,14 +2,12 @@ package com.coolcool.moviecool;
 
 import android.app.Application;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import cn.bmob.v3.Bmob;
 
-/**
- * Created by yanshili on 2016/4/2.
- */
+
 public class MyApp extends Application {
     public static final String TAG="MyApp";
 

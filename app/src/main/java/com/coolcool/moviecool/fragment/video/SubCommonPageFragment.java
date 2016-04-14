@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.R;
 import com.coolcool.moviecool.adapter.SubRecyclerAdapter;
 import com.coolcool.moviecool.holder.CarouselViewHolder;
@@ -58,6 +58,8 @@ public class SubCommonPageFragment extends Fragment {
     SubRecyclerAdapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
 
+    //判断是否正在获取数据
+    private boolean isBusy =false;
 
     public SubCommonPageFragment() {
         // Required empty public constructor
@@ -159,9 +161,9 @@ public class SubCommonPageFragment extends Fragment {
     private void processData(List<MoviePage> list){
         if (list.size()>0) mFeedList.clear();
 
-        carouselList = new ArrayList<MovieInfo>();
-        fantasticList = new ArrayList<MovieInfo>();
-        hotList = new ArrayList<MovieInfo>();
+        carouselList = new ArrayList<>();
+        fantasticList = new ArrayList<>();
+        hotList = new ArrayList<>();
         specialList=new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
@@ -218,6 +220,8 @@ public class SubCommonPageFragment extends Fragment {
 
     //根据不同页面建立不同的加载条件
     private BmobQuery<MovieInfo> processQuery(String pageName,BmobQuery<MovieInfo> query){
+        query.addWhereContains("htmlUrl","http");
+
         if (pageName.contains("经典老片")){
             query.addWhereLessThanOrEqualTo("year", 2010);
             query.order("-updateDate");
@@ -283,6 +287,8 @@ public class SubCommonPageFragment extends Fragment {
                         Toast.makeText(mContext, "已经到最后一项了", Toast.LENGTH_SHORT).show();
                     }
                 }
+                //下载完成，处于空闲状态
+                isBusy=false;
             }
 
             @Override
@@ -324,8 +330,10 @@ public class SubCommonPageFragment extends Fragment {
 
             switch (newState){
                 case RecyclerView.SCROLL_STATE_IDLE:
-                    if (lastPosition == totalCount -1){
-                        //已经到最后一项了
+                    //已经到最后一项了并且空闲状态
+                    if (lastPosition == totalCount -1&&!isBusy){
+                        //开始下载数据，进入忙碌状态
+                        isBusy=true;
                         fetchNextData();
                     }
                     break;

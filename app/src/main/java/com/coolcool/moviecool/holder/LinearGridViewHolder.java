@@ -112,7 +112,9 @@ public class LinearGridViewHolder extends RecyclerBaseViewHolder implements View
     int columnCount=3;
     @Override
     protected void fillView() {
-        if (mMovieInfoList!=null&&mMovieInfoList.size()>0){
+        if (mMovieInfoList==null){
+            mMovieInfoList=new ArrayList<>();
+        }
             leftText.setText(labelLeft);
             rightText.setText(labelRight);
             Log.i(TAG, "个数==" + mMovieInfoList.size() );
@@ -128,11 +130,13 @@ public class LinearGridViewHolder extends RecyclerBaseViewHolder implements View
                 textView.setText(movie.getName());
                 bottomShadow.setEnabled(true);
                 imageView.setTag(movie);
-                if (movie.getPosterUrl()!=null)
-                imageView.setImageURI(Uri.parse(movie.getPosterUrl()));
+                String url=movie.getPosterUrl();
+                Uri uri=null;
+                if (url!=null)
+                    uri=Uri.parse(url);
+                imageView.setImageURI(uri);
 
             }
-        }
     }
 
     @Override

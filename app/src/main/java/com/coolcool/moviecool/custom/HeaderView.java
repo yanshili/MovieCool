@@ -2,12 +2,13 @@ package com.coolcool.moviecool.custom;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.R;
 
 /**
@@ -61,7 +62,7 @@ public class HeaderView extends LinearLayout{
                 }
                 //为每一个textView均设置一个tag标签
                 textView.setTag(Constant.array.get(i)[j] + j);
-                textView.setTextSize(4* Constant.dp);
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,16* Constant.dp);
                 //设置间隔
                 textView.setPaddingRelative((int) (16* Constant.dp)
                         , (int) (4* Constant.dp)

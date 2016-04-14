@@ -14,7 +14,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -28,10 +27,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.coolcool.moviecool.R;
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.activity.base.BaseActivity;
+import com.coolcool.moviecool.model.OrdinaryUser;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.utils.PasswordUtils;
 import com.coolcool.moviecool.utils.RegexUtils;
-import com.coolcool.moviecool.model.OrdinaryUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ import java.util.List;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
     public static final String TAG="LoginActivity";
 
     /**
@@ -172,7 +172,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //用户保存的秘密期限为30天
             if (currentTime-(long)30*24*60*60*1000>savedTime){
                 //密码已过期，让用户重新输入密码
-                password=null;
                 if (!account.equals("")){
                     mUserNameView.setText(account);
                     mPasswordView.requestFocus();
@@ -232,7 +231,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             .getCurrentUser(LoginActivity.this, OrdinaryUser.class);
                     if (user!=null) Constant.ordinaryUser=user;
                     Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
+//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //                    startActivity(intent);
                     finish();
                 }
@@ -384,7 +383,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             showProgress(false);
 
             if (success) {
-                Intent intent=new Intent(LoginActivity.this,BaseActivity.class);
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
                 finish();
             } else {

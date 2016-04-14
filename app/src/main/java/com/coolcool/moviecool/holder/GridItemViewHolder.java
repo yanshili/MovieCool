@@ -16,9 +16,6 @@ import com.coolcool.moviecool.model.ItemFeed;
 import com.coolcool.moviecool.model.MovieInfo;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-/**
- * Created by yanshili on 2016/4/2.
- */
 public class GridItemViewHolder extends RecyclerBaseViewHolder implements View.OnClickListener{
     private SimpleDraweeView imageView;
     private TextView textView;
@@ -50,11 +47,17 @@ public class GridItemViewHolder extends RecyclerBaseViewHolder implements View.O
 
     @Override
     protected void fillView() {
-        if (mMovieInfo==null) return;
+        if (mMovieInfo==null){
+            mMovieInfo=new MovieInfo();
+        }
         Log.i(SearchFragment.TAG, "电影的名字== " + mMovieInfo.getName());
+
         String url=mMovieInfo.getPosterUrl();
+        Uri uri=null;
         if (url!=null)
-        imageView.setImageURI(Uri.parse(url));
+            uri=Uri.parse(url);
+        imageView.setImageURI(uri);
+
         imageView.setTag(mMovieInfo);
         textView.setText(mMovieInfo.getName());
     }

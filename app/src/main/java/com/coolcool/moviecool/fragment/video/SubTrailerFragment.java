@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.coolcool.moviecool.utils.Constant;
+import com.coolcool.moviecool.common.Constant;
 import com.coolcool.moviecool.R;
 import com.coolcool.moviecool.adapter.SubRecyclerAdapter;
 import com.coolcool.moviecool.holder.CarouselViewHolder;

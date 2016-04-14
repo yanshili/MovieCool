@@ -284,7 +284,10 @@ public class MovieInfo extends BmobObject{
         String date=null;
         if (releaseDate!=null){
             String releaseDateText=releaseDate.getDate();
+            if (releaseDateText.contains(" 12:00:00"))
             date=releaseDateText.replace(" 12:00:00","");
+            if (releaseDateText.contains(" 00:00:00"))
+            date=releaseDateText.replace(" 00:00:00","");
         }
 
         if (summary!=null){
