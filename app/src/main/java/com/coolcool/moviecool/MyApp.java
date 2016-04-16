@@ -15,6 +15,7 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         initApp();
+        Log.i("TAG","test change");
     }
 
     private void initApp(){
